@@ -67,8 +67,8 @@ El `LoggerSingleton` se asegura de que todos los intentos de envío se registren
 
 ```bash
 git clone https://github.com/SwEng2-2025i/MV7h.git
-git checkout JuanDavidRamirez
 cd Laboratory1
+cd 1001185516
 ```
 
 2. instalar las dependencias y ejecutar el servidor:
@@ -96,7 +96,19 @@ En el "body" ponemos raw y pegamos el JSON de prueba
 }
 ```
 
-La salida nos debe arrojar un mensaje de verificación
+O tambien podemos ejecutar en otra terminal un CURL
+
+```bash
+curl -X POST http://127.0.0.1:5000/usuarios \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Juan David Ramirez",
+    "preferred_channel": "email",
+    "available_channels": ["email", "sms", "call"]
+  }'
+```
+
+La salida nos debe arrojar un mensaje de verificación como Usuario registrado con exito
 
 Luego de esto, ejecutamos cambiando la URL, esto para probar el sistema de notificaciones:
 
@@ -113,6 +125,17 @@ Igual que con el endpoint anterior, ponemos en postman en "body" raw y copiamos 
 }
 ```
 
+Si preferimos hacer un CURL desde otra terminal (usamos data binary debido a las restricciones de nuestro lenguaje como tildes o la letra ñ), ponemos:
+
+```bash
+echo '{
+  "user_name": "Juan David Ramirez",
+  "message": "Tu cita es mañana a las 9:00 AM."
+}' | curl -X POST http://127.0.0.1:5000/notificaciones/enviar \
+  -H "Content-Type: application/json" \
+  --data-binary @-
+```
+
 Nos genera un mensaje de entrada y verificamos que no hay error
 
 Por ultimo para pedir las listas de intentos de ingreso, ponemos en la URL lo siguiente:
@@ -123,11 +146,19 @@ http://127.0.0.1:5000/logs [GET] --> Recuerda el metodo GET (Cambialo)
 
 El resultado es un listado JSON con los intentos de notificación, tanto los fallidos como los exitosos
 
-Para ver la documentación en swagger, debemos ejecutar el servicio de Flask y luego ir a la URL:
+Tambien podemos ejecutar desde curl:
+
+```
+curl -X GET http://127.0.0.1:5000/logs
+```
+
+Para ver la documentación en swagger, debemos ir a la URL:
 
 ```
 http://127.0.0.1:5000/apidocs
 ```
+
+En todos estos procesos procura tener el FLASK del app.py ejecutado
 
 ## 📘 Diagrama de clases
 

@@ -5,7 +5,31 @@ from utils.logger import LoggerSingleton
 from flasgger import Swagger
 
 app = Flask(__name__)
-swagger = Swagger(app)
+
+template = {
+    "swagger": "2.0",
+    "info": {
+        "title": "API de Notificaciones y Usuarios",
+        "description": "API para registrar usuarios y enviar notificaciones",
+        "version": "1.0"
+    },
+    "tags": [
+        {
+            "name": "Usuarios",
+            "description": "Operaciones relacionadas con usuarios"
+        },
+        {
+            "name": "Notificaciones",
+            "description": "Envío de notificaciones"
+        },
+        {
+            "name": "Logs",
+            "description": "Consulta de logs"
+        }
+    ]
+}
+
+swagger = Swagger(app, template=template)
 
 @app.route("/usuarios", methods=["POST"])
 def registrar_usuario():
@@ -34,12 +58,19 @@ def registrar_usuario():
               type: array
               items:
                 type: string
+          example: |
+            {
+              "name": "Juan",
+              "preferred_channel": "email",
+              "available_channels": ["email", "sms", "llamada"]
+            }
     responses:
       201:
         description: Usuario registrado
       400:
         description: Error en la solicitud
     """
+
     data = request.json
     try:
         user = create_user(
@@ -74,7 +105,6 @@ def enviar_notificacion():
           required:
             - user_name
             - message
-            - priority
           properties:
             user_name:
               type: string
@@ -82,6 +112,11 @@ def enviar_notificacion():
             message:
               type: string
               description: Contenido de la notificación
+          example: |
+            {
+              "user_name": "Juan",
+              "message": "Hola, tienes una cita mañana a las 9:00 am"
+            }
     responses:
       200:
         description: Resultado del intento de notificación
@@ -99,6 +134,7 @@ def enviar_notificacion():
       404:
         description: Usuario no encontrado
     """
+
     data = request.json
     user_name = data.get("user_name")
     message = data.get("message")
@@ -108,6 +144,19 @@ def enviar_notificacion():
 
 @app.route("/logs", methods=["GET"])
 def ver_logs():
+    """
+    Ver logs del sistema
+    ---
+    tags:
+      - Logs
+    responses:
+      200:
+        description: Lista de logs
+        schema:
+          type: array
+          items:
+            type: string
+    """
     logger = LoggerSingleton()
     return jsonify(logger.get_logs())
 
