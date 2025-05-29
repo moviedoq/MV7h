@@ -150,7 +150,8 @@ http://127.0.0.1:5000/apidocs
 
 ## 📘 Diagrama de clases
 v  
-![Diagrama de Clases](Laboratory1/1107974782/assets/Lab1_diagrama_clases.png)
+![Diagrama de Clases](assets/Lab1_diagrama_clases.png)
+
 
 
 ---
