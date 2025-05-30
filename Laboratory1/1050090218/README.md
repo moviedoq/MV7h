@@ -80,8 +80,7 @@ La API expone los siguientes endpoints:
     ```json
     {
         "status": "Notification processing completed.",
-        "detail": "Notification for Ana sent successfully via sms." 
-        // o "Notification for Ana failed on all attempted channels: sms, email, console."
+        "detail": "Notification for Ana sent successfully via sms."
     }
     ```
 * **Respuestas de Error:**
