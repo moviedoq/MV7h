@@ -1,9 +1,10 @@
 # app.py
 from flask import Flask
 from flasgger import Swagger
-from api import api_bp
-from services import UserService, NotificationService
-from logger import Logger
+from api.api import api_bp
+from services.user_service import UserService
+from services.notification_service import NotificationService
+from utils.logger import Logger
 
 def create_app():
     app = Flask(__name__)
