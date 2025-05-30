@@ -1,4 +1,3 @@
-# notification_system/logger.py
 class Logger:
     """
     A simple in-memory logger to record system events and notification attempts.
