@@ -177,5 +177,20 @@ curl -X POST \
     "priority": "high"
   }'
 ```
+Respuesta esperada
+```
+{
+  "logs": [
+    "Initiating notification for 'Juan' with 'high' priority.",
+    "Processing HIGH priority notification for Juan.",
+    "Starting channel delivery chain for Juan...",
+    "Attempting to send notification to Juan via email - SUCCESS",
+    "Notification sent successfully to Juan via Email: 'Recordatorio: Su cita es manana a las 10 AM.'",
+    "Notification successfully delivered to Juan."
+  ],
+  "message": "Notification sent successfully.",
+  "status": "success"
+}
+```
 **Author:** Daniel Alejandro Ochoa Ruiz
 
