@@ -28,6 +28,30 @@ This system incorporates the following design patterns:
     * **Justification:** The `Logger` class is implemented as a Singleton. This ensures that there is only one instance of the logger throughout the application, providing a single point of access for all logging operations. This is crucial for collecting all system logs into a centralized, in-memory list, making it easy to retrieve them for debugging or API responses.
     * **Implementation:** The `Logger` class in `logger.py` uses class-level attributes and class methods (`@classmethod`) to maintain a single `_logs` list, effectively behaving as a Singleton.
 
+## 🧱 Estructura del Proyecto
+
+```
+Laboratory1/1025060067
+├── app.py
+├── api/
+│ └── api.py
+├── handlers/
+│ ├── notification_handler.py
+│ ├── email_handler.py
+│ ├── sms_handler.py
+├── models/
+│ ├── notification.py
+│ └── user.py
+├── services/
+│ └── notification_service.py
+| └── user_service.py
+├── strategies/
+│ └── notification_strategies.py
+├── utils/
+│ └── logger.py
+└── requirements.txt
+```
+
 ## 🏗️ Class/Module Diagram
 
 ```mermaid
