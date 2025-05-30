@@ -135,14 +135,14 @@ Use `random.choice([True, False])` to simulate failures.
 ```bash
 {
   curl -X GET \
-  http://localhost:5000/users
+  http://localhost:5000/api/users
 }
 ```
 
 **POST /users** `Registrar un usuario nuevo (Juan)`
 ```bash
 curl -X POST \
-  http://localhost:5000/users \
+  http://localhost:5000/api/users \
   -H 'Content-Type: application/json' \
   -d '{
     "name": "Juan",
@@ -150,7 +150,22 @@ curl -X POST \
     "available_channels": ["email", "sms"]
   }'
 ```
-
+Respuesta esperada
+```bash
+{
+  "message": "User 'Juan' registered successfully.",
+  "status": "success",
+  "user": {
+    "available_channels": [
+      "email",
+      "sms"
+    ],
+    "name": "Juan",
+    "preferred_channel": "email",
+    "user_id": "cb288e5b-7931-4c6b-b620-e227c487954c"
+  }
+}
+```
 **POST /notifications/send** `Enviar una notificación de alta prioridad a Juan (email preferido)`
 ```bash
 curl -X POST \
@@ -158,10 +173,9 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -d '{
     "user_name": "Juan",
-    "message": "Recordatorio: Su cita es mañana a las 10 AM.",
+    "message": "Recordatorio: Su cita es manana a las 10 AM.",
     "priority": "high"
   }'
 ```
-
 **Author:** Daniel Alejandro Ochoa Ruiz
 
