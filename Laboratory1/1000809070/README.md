@@ -24,7 +24,7 @@ El `Logger` es una clase Singleton que asegura que todos los intentos de notific
 
 ## 📦 Estructura del Proyecto
 
-
+```
 ├── app.py 
 ├── handlers/
 │ ├── base_handler.py 
@@ -38,6 +38,7 @@ El `Logger` es una clase Singleton que asegura que todos los intentos de notific
 │ └── user.py 
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
