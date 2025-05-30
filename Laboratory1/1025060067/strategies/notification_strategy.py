@@ -1,7 +1,6 @@
-# notification_system/strategies.py
 import abc
-from logger import Logger
-from models import User # Import User for type hinting
+from utils.logger import Logger
+from models.user import User 
 
 # Forward declaration for type hinting NotificationService
 # This avoids circular import issues between services.py and strategies.py
