@@ -46,23 +46,23 @@ Se aplica también el patrón Singleton para el registro de eventos (Logger).
 ---
 ## Ejemplos de Peticiones
 **POST /users**
-```json
+`
 curl -X POST http://127.0.0.1:5000/users \
      -H "Content-Type: application/json" \
      -d '{"name":"Juan","preferred_channel":"email","available_channels":["email","sms"]}'
-```
+`
 
 **GET /users**
-```json
+`
 curl http://127.0.0.1:5000/users
-```
+`
 
 **POST /notifications/send**
-```json
+`
 curl -X POST http://127.0.0.1:5000/notifications/send \
      -H "Content-Type: application/json" \
      -d '{"user_name":"Juan","message":"Tu cita es mañana","priority":"high"}'
-```
+`
 
 ---
 ## Diagramas de Clases/Módulos
@@ -85,37 +85,37 @@ Abrir terminal y navegar a la carpeta del proyecto.
 
 Crear entorno virtual:
 
-```json
+`
 py -3 -m venv venv
-```
+`
 
 Activar entorno:
 
-```json
+`
 Windows CMD: venv\Scripts\activate
-```
+`
 
-```json
+`
 PowerShell: Set-ExecutionPolicy -Scope Process Bypass y luego venv\Scripts\Activate.ps1
-```
+`
 
 Instalar dependencias:
 
-```json
+`
 pip install -r requirements.txt
-```
+`
 
 Ejecutar servidor:
 
-```json
+`
 python app.py
-```
+`
 
 Probar endpoints usando curl, Postman o Swagger UI:
 
-```json
+`
 Swagger UI: http://127.0.0.1:5000/
-```
+`
 
 CURLs de ejemplo en la sección "Ejemplos de Peticiones".
 
