@@ -18,7 +18,7 @@ El sistema está organizado en capas siguiendo la arquitectura hexagonal:
 
 ## 📐 Class/Module Diagram
 
-![Class/Module Diagram](classL_diagram.png)
+![Class/Module Diagram](class_diagram.png)
 
 ---
 
