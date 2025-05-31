@@ -116,7 +116,7 @@ python app.py
 Swagger UI: http://127.0.0.1:5000/
 `
 
-* Example cURL commands are provided in the "Example Requests" section above.
+* Example cURL commands are provided in the "Example Payloads" 
 
 ---
 
