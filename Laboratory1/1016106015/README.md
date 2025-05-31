@@ -28,7 +28,7 @@ You will simulate delivery attempts via a **Chain of Responsibility**. For examp
 Use `random.choice([True, False])` to simulate failures.
 
 ---
-**##Descripción del Sistema**
+##Descripción del Sistema
 Multichannel Notification System es un API REST modular desarrollado en Python 
 con Flask-RESTX que permite gestionar usuarios con múltiples canales de comunicación 
 (email, SMS) y enviar notificaciones con lógica de Chain of Responsibility. 
@@ -36,7 +36,7 @@ En caso de fallo en el canal preferido, el sistema intenta canales de respaldo a
 Se aplica también el patrón Singleton para el registro de eventos (Logger).
 
 ---
-**##Endpoints**
+##Endpoints
 | Method | Endpoint              | Description                                      |
 |--------|-----------------------|--------------------------------------------------|
 | POST   | `/users`              | Register a user with name, preferred and available channels |
@@ -44,7 +44,7 @@ Se aplica también el patrón Singleton para el registro de eventos (Logger).
 | POST   | `/notifications/send` | Send a notification with message and priority    |
 
 ---
-**##Ejemplos de Peticiones**
+##Ejemplos de Peticiones
 **POST /users**
 ```json
 curl -X POST http://127.0.0.1:5000/users \
@@ -65,11 +65,11 @@ curl -X POST http://127.0.0.1:5000/notifications/send \
 ```
 
 ---
-**##Diagramas de Clases/Módulos**
+##Diagramas de Clases/Módulos
 ![image](https://github.com/user-attachments/assets/af75652f-2ab4-4915-9b8d-a7cfabd14154)
 
 ---
-**##Justificación de Patrones de Diseño**
+##Justificación de Patrones de Diseño
 Chain of Responsibility: Permite encadenar objetos que procesan el envío de 
 notificaciones por distintos canales de forma flexible y sin condicionales anidados.
 
@@ -77,7 +77,7 @@ Singleton (Logger): Garantiza una única instancia de componente de registro de 
 centralizando los logs y evitando múltiples instancias.
 
 ---
-**##Instrucciones de Configuración y Pruebas**
+##Instrucciones de Configuración y Pruebas
 
 Clonar repositorio en laboratories/laboratory_1/1016106015/.
 
