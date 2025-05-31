@@ -1,4 +1,5 @@
-# 🧪 Advanced Individual Lab: Multichannel Notification System (REST API)
+# 🧪 MultiChannel Notification System
+Autor: Nicolas Cortes Gutierrez
 
 ## 📝 Context
 
@@ -27,46 +28,84 @@ You will simulate delivery attempts via a **Chain of Responsibility**. For examp
 Use `random.choice([True, False])` to simulate failures.
 
 ---
+**##Descripción del Sistema**
+Multichannel Notification System es un API REST modular desarrollado en Python 
+con Flask-RESTX que permite gestionar usuarios con múltiples canales de comunicación 
+(email, SMS) y enviar notificaciones con lógica de Chain of Responsibility. 
+En caso de fallo en el canal preferido, el sistema intenta canales de respaldo automáticamente. 
+Se aplica también el patrón Singleton para el registro de eventos (Logger).
 
-## 🔧 REST API Endpoints
-
+---
+**##Endpoints**
 | Method | Endpoint              | Description                                      |
 |--------|-----------------------|--------------------------------------------------|
 | POST   | `/users`              | Register a user with name, preferred and available channels |
 | GET    | `/users`              | List all users                                   |
 | POST   | `/notifications/send` | Send a notification with message and priority    |
 
-### Example Payloads
-
+---
+**##Ejemplos de Peticiones**
 **POST /users**
 ```json
-{
-  "name": "Juan",
-  "preferred_channel": "email",
-  "available_channels": ["email", "sms"]
-}
+curl -X POST http://127.0.0.1:5000/users \
+     -H "Content-Type: application/json" \
+     -d '{"name":"Juan","preferred_channel":"email","available_channels":["email","sms"]}'
+```
+
+**GET /users**
+```json
+curl http://127.0.0.1:5000/users
 ```
 
 **POST /notifications/send**
 ```json
-{
-  "user_name": "Juan",
-  "message": "Your appointment is tomorrow.",
-  "priority": "high"
-}
+curl -X POST http://127.0.0.1:5000/notifications/send \
+     -H "Content-Type: application/json" \
+     -d '{"user_name":"Juan","message":"Tu cita es mañana","priority":"high"}'
 ```
 
+---
+**##Diagramas de Clases/Módulos**
+![image](https://github.com/user-attachments/assets/af75652f-2ab4-4915-9b8d-a7cfabd14154)
 
 ---
+**##Justificación de Patrones de Diseño**
+Chain of Responsibility: Permite encadenar objetos que procesan el envío de 
+notificaciones por distintos canales de forma flexible y sin condicionales anidados.
 
-## ✅ Requirements
+Singleton (Logger): Garantiza una única instancia de componente de registro de eventos, 
+centralizando los logs y evitando múltiples instancias.
 
-- Use Flask for REST API
-- Apply at least two design patterns
-- Simulate channel failures and retry using fallback
-- Logger must record every notification attempt (optional Singleton)
-- No database required (in-memory data structures allowed)
-- Code must be modular, clean, and well-documented
+---
+**##Instrucciones de Configuración y Pruebas**
+
+Clonar repositorio en laboratories/laboratory_1/1016106015/.
+
+Abrir terminal y navegar a la carpeta del proyecto.
+
+Crear entorno virtual:
+
+py -3 -m venv venv
+
+Activar entorno:
+
+Windows CMD: venv\Scripts\activate
+
+PowerShell: Set-ExecutionPolicy -Scope Process Bypass y luego venv\Scripts\Activate.ps1
+
+Instalar dependencias:
+
+pip install -r requirements.txt
+
+Ejecutar servidor:
+
+python app.py
+
+Probar endpoints usando curl, Postman o Swagger UI:
+
+Swagger UI: http://127.0.0.1:5000/
+
+CURLs de ejemplo en la sección "Ejemplos de Peticiones".
 
 ---
 
