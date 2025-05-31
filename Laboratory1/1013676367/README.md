@@ -1,5 +1,7 @@
 # Sistema de Notificación
 
+**Autor:** Jesus David Giraldo Gomez
+
 Este proyecto implementa una API REST modular para gestionar usuarios y enviar notificaciones a través de múltiples canales (email, SMS, consola), utilizando patrones de diseño para garantizar escalabilidad y mantenibilidad.
 
 ## Características Principales
