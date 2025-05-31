@@ -1,6 +1,6 @@
 # 🧪 Laboratorio Avanzado Individual: Sistema de Notificación Multicanal (API REST)
 
-**Nombre Completo:** [Tu Nombre Completo Aquí]
+**Andres David Caro Mora** 
 
 ## 📝 Explicación del Sistema
 
@@ -88,47 +88,7 @@ La API expone los siguientes endpoints:
     * `404 Not Found`: Si el `user_name` especificado no existe.
 
 ## 📐 Diagrama de Clases/Módulos (Conceptual)
-
-A continuación, se describe la relación entre los principales componentes del sistema:
-
-* **`app.py` (Flask Application):**
-    * Define los endpoints REST (`/users`, `/notifications/send`).
-    * Maneja las solicitudes HTTP (JSON) y las respuestas.
-    * Utiliza `Flasgger` para la documentación de Swagger.
-    * Interactúa con `NotificationService` para enviar notificaciones y `models.users_db` para la gestión de usuarios.
-    * Utiliza la instancia global de `LoggerSingleton`.
-
-* **`models.py`:**
-    * `User` (clase): Representa la estructura de un usuario (nombre, canal preferido, canales disponibles).
-    * `users_db` (dict): Almacenamiento en memoria para los objetos `User`.
-
-* **`logger.py`:**
-    * `LoggerSingleton` (clase): Implementa el patrón Singleton para asegurar una única instancia de logger en toda la aplicación. Proporciona un método `log()`.
-
-* **`utils.py`:**
-    * `simulate_failure()` (función): Lógica para simular aleatoriamente el éxito o fallo de un canal de notificación.
-
-* **`notifications.py`:**
-    * **Patrón Estrategia:**
-        * `NotificationStrategy` (ABC): Interfaz para las estrategias de envío. Define el método `send()`.
-        * `EmailStrategy`, `SMSStrategy`, `ConsoleStrategy` (clases concretas): Implementan `NotificationStrategy` para cada tipo de canal. Contienen la lógica específica de envío (simulada) y la llamada a `simulate_failure()`. Utilizan `LoggerSingleton`.
-    * **Patrón Cadena de Responsabilidad:**
-        * `NotificationHandler` (ABC): Interfaz para los manejadores de la cadena. Define `set_next()` y `handle_request()`. Cada handler tiene un `channel_name` y una `NotificationStrategy`.
-        * `ChannelNotificationHandler` (clase concreta): Implementa `NotificationHandler`. En su método `handle_request()`:
-            1.  Verifica si el canal del handler es aplicable al usuario y no se ha intentado.
-            2.  Si es aplicable, usa su `NotificationStrategy` asociada para intentar enviar.
-            3.  Si el envío es exitoso, termina.
-            4.  Si falla o no es aplicable, pasa la solicitud al `_next_handler` en la cadena.
-    * `NotificationService` (clase):
-        * Orquesta el proceso de envío de notificaciones.
-        * Contiene un diccionario de `strategies` y `base_handlers` disponibles.
-        * El método `send_notification()`:
-            1.  Construye dinámicamente una cadena de `ChannelNotificationHandler` basada en el canal preferido y los canales disponibles del usuario.
-            2.  Inicia el proceso de notificación llamando a `handle_request()` en el primer handler de la cadena construida.
-            3.  Devuelve un mensaje de estado.
-
-**Flujo de Notificación:**
-`API Endpoint` -> `NotificationService.send_notification()` -> [Construye Cadena: `Handler1(Strategy1) -> Handler2(Strategy2) -> ...`] -> `Handler1.handle_request()` -> (si falla) `Handler2.handle_request()` -> ...
+![alt text](image.png)
 
 ## 🎨 Justificación de Patrones de Diseño
 
