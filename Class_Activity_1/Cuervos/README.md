@@ -22,6 +22,12 @@ El sistema está organizado en capas siguiendo la arquitectura hexagonal:
 
 ---
 
+## Flow Diagram
+
+![Flow Diagram](flow_diagram.png)
+
+---
+
 ## 📋 Endpoints
 
 ### ➕ Create a task
