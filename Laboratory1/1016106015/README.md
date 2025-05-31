@@ -85,25 +85,37 @@ Abrir terminal y navegar a la carpeta del proyecto.
 
 Crear entorno virtual:
 
+```json
 py -3 -m venv venv
+```
 
 Activar entorno:
 
+```json
 Windows CMD: venv\Scripts\activate
+```
 
+```json
 PowerShell: Set-ExecutionPolicy -Scope Process Bypass y luego venv\Scripts\Activate.ps1
+```
 
 Instalar dependencias:
 
+```json
 pip install -r requirements.txt
+```
 
 Ejecutar servidor:
 
+```json
 python app.py
+```
 
 Probar endpoints usando curl, Postman o Swagger UI:
 
+```json
 Swagger UI: http://127.0.0.1:5000/
+```
 
 CURLs de ejemplo en la sección "Ejemplos de Peticiones".
 
