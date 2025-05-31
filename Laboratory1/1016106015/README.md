@@ -28,12 +28,11 @@ You will simulate delivery attempts via a **Chain of Responsibility**. For examp
 Use `random.choice([True, False])` to simulate failures.
 
 ---
-## Descripción del Sistema
-Multichannel Notification System es un API REST modular desarrollado en Python 
-con Flask-RESTX que permite gestionar usuarios con múltiples canales de comunicación 
-(email, SMS) y enviar notificaciones con lógica de Chain of Responsibility. 
-En caso de fallo en el canal preferido, el sistema intenta canales de respaldo automáticamente. 
-Se aplica también el patrón Singleton para el registro de eventos (Logger).
+## System Deescription
+Multichannel Notification System is a modular REST API developed in Python using Flask-RESTX. 
+It allows managing users with multiple communication channels (email, SMS) and sending notifications using
+a Chain of Responsibility pattern. If the preferred channel fails, the system automatically attempts backup channels. 
+Additionally, the Singleton pattern is applied for event logging (Logger).
 
 ---
 ## Endpoints
@@ -44,7 +43,7 @@ Se aplica también el patrón Singleton para el registro de eventos (Logger).
 | POST   | `/notifications/send` | Send a notification with message and priority    |
 
 ---
-## Ejemplos de Peticiones
+## Example Payloads
 **POST /users**
 `
 curl -X POST http://127.0.0.1:5000/users \
@@ -65,31 +64,31 @@ curl -X POST http://127.0.0.1:5000/notifications/send \
 `
 
 ---
-## Diagramas de Clases/Módulos
+## Class/module diagram
 ![image](https://github.com/user-attachments/assets/af75652f-2ab4-4915-9b8d-a7cfabd14154)
 
 ---
-## Justificación de Patrones de Diseño
-* Chain of Responsibility: Permite encadenar objetos que procesan el envío de 
-notificaciones por distintos canales de forma flexible y sin condicionales anidados.
+## Design Pattern Justification
+* Chain of Responsibility: Allows chaining objects that process notification sending through
+  different channels in a flexible way and without nested conditionals.
 
-* Singleton (Logger): Garantiza una única instancia de componente de registro de eventos, 
-centralizando los logs y evitando múltiples instancias.
+* Singleton (Logger): Ensures a single instance of the event logging component,
+  centralizing logs and preventing multiple instances.
 
 ---
-## Instrucciones de Configuración y Pruebas
+## Setup and Testing Instructions
 
-* Clonar repositorio en laboratories/laboratory_1/1016106015/.
+* Clone the repository into laboratories/laboratory_1/1016106015/.
 
-* Abrir terminal y navegar a la carpeta del proyecto.
+* Open a terminal and navigate to the project folder.
 
-* Crear entorno virtual:
+* Create a virtual environment:
 
 `
 py -3 -m venv venv
 `
 
-* Activar entorno:
+* Activate the environment:
 
 `
 Windows CMD: venv\Scripts\activate
@@ -99,25 +98,25 @@ Windows CMD: venv\Scripts\activate
 PowerShell: Set-ExecutionPolicy -Scope Process Bypass y luego venv\Scripts\Activate.ps1
 `
 
-* Instalar dependencias:
+* Install dependencies:
 
 `
 pip install -r requirements.txt
 `
 
-* Ejecutar servidor:
+* Run the server:
 
 `
 python app.py
 `
 
-* Probar endpoints usando curl, Postman o Swagger UI:
+* Test endpoints using curl, Postman, or Swagger UI:
 
 `
 Swagger UI: http://127.0.0.1:5000/
 `
 
-* CURLs de ejemplo en la sección "Ejemplos de Peticiones".
+* Example cURL commands are provided in the "Example Requests" section above.
 
 ---
 
