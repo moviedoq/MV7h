@@ -70,26 +70,26 @@ curl -X POST http://127.0.0.1:5000/notifications/send \
 
 ---
 ## Justificación de Patrones de Diseño
-Chain of Responsibility: Permite encadenar objetos que procesan el envío de 
+* Chain of Responsibility: Permite encadenar objetos que procesan el envío de 
 notificaciones por distintos canales de forma flexible y sin condicionales anidados.
 
-Singleton (Logger): Garantiza una única instancia de componente de registro de eventos, 
+* Singleton (Logger): Garantiza una única instancia de componente de registro de eventos, 
 centralizando los logs y evitando múltiples instancias.
 
 ---
 ## Instrucciones de Configuración y Pruebas
 
-Clonar repositorio en laboratories/laboratory_1/1016106015/.
+* Clonar repositorio en laboratories/laboratory_1/1016106015/.
 
-Abrir terminal y navegar a la carpeta del proyecto.
+* Abrir terminal y navegar a la carpeta del proyecto.
 
-Crear entorno virtual:
+* Crear entorno virtual:
 
 `
 py -3 -m venv venv
 `
 
-Activar entorno:
+* Activar entorno:
 
 `
 Windows CMD: venv\Scripts\activate
@@ -99,25 +99,25 @@ Windows CMD: venv\Scripts\activate
 PowerShell: Set-ExecutionPolicy -Scope Process Bypass y luego venv\Scripts\Activate.ps1
 `
 
-Instalar dependencias:
+* Instalar dependencias:
 
 `
 pip install -r requirements.txt
 `
 
-Ejecutar servidor:
+* Ejecutar servidor:
 
 `
 python app.py
 `
 
-Probar endpoints usando curl, Postman o Swagger UI:
+* Probar endpoints usando curl, Postman o Swagger UI:
 
 `
 Swagger UI: http://127.0.0.1:5000/
 `
 
-CURLs de ejemplo en la sección "Ejemplos de Peticiones".
+* CURLs de ejemplo en la sección "Ejemplos de Peticiones".
 
 ---
 
