@@ -1,6 +1,6 @@
 # 🧪 Laboratorio Avanzado Individual: Sistema de Notificación Multicanal (API REST)
 
-**Andres David Caro Mora** 
+**Andres David Caro Mora**
 
 ## 📝 Explicación del Sistema
 
@@ -88,7 +88,8 @@ La API expone los siguientes endpoints:
     * `404 Not Found`: Si el `user_name` especificado no existe.
 
 ## 📐 Diagrama de Clases/Módulos (Conceptual)
-![alt text](image.png)
+![Diagrama](Diagrama.png)
+
 
 ## 🎨 Justificación de Patrones de Diseño
 
