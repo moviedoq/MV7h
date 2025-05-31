@@ -28,14 +28,14 @@ You will simulate delivery attempts via a **Chain of Responsibility**. For examp
 Use `random.choice([True, False])` to simulate failures.
 
 ---
-## System Deescription
+## 💡System Deescription
 Multichannel Notification System is a modular REST API developed in Python using Flask-RESTX. 
 It allows managing users with multiple communication channels (email, SMS) and sending notifications using
 a Chain of Responsibility pattern. If the preferred channel fails, the system automatically attempts backup channels. 
 Additionally, the Singleton pattern is applied for event logging (Logger).
 
 ---
-## Endpoints
+## 💡Endpoints
 | Method | Endpoint              | Description                                      |
 |--------|-----------------------|--------------------------------------------------|
 | POST   | `/users`              | Register a user with name, preferred and available channels |
@@ -43,7 +43,7 @@ Additionally, the Singleton pattern is applied for event logging (Logger).
 | POST   | `/notifications/send` | Send a notification with message and priority    |
 
 ---
-## Example Payloads
+## 💡Example Payloads
 **POST /users**
 `
 curl -X POST http://127.0.0.1:5000/users \
@@ -64,11 +64,11 @@ curl -X POST http://127.0.0.1:5000/notifications/send \
 `
 
 ---
-## Class/module diagram
+## 💡Class/module diagram
 ![image](https://github.com/user-attachments/assets/af75652f-2ab4-4915-9b8d-a7cfabd14154)
 
 ---
-## Design Pattern Justification
+## 💡Design Pattern Justification
 * Chain of Responsibility: Allows chaining objects that process notification sending through
   different channels in a flexible way and without nested conditionals.
 
@@ -76,7 +76,7 @@ curl -X POST http://127.0.0.1:5000/notifications/send \
   centralizing logs and preventing multiple instances.
 
 ---
-## Setup and Testing Instructions
+## 💡Setup and Testing Instructions
 
 * Clone the repository into laboratories/laboratory_1/1016106015/.
 
