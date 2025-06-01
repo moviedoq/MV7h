@@ -19,7 +19,7 @@ Este proyecto es un sistema de notificaciones basado en Flask que permite regist
 
 
 ## 🗂️ Estructura del Proyecto
-
+```bash
 ├── domain
 │ ├── entities # Entidades de dominio (User, NotificationChannel)
 │ └── ports # Interfaces de repositorios y canales
@@ -31,6 +31,7 @@ Este proyecto es un sistema de notificaciones basado en Flask que permite regist
 │ └── http_handler.py # Endpoints y rutas HTTP
 ├── main.py # Punto de entrada de la aplicación
 └── app.log # Archivo de logs
+```
 
 ## 📐 Design Pattern Justifications
 
@@ -193,15 +194,12 @@ classDiagram
         -instance
         +log(message)
     }
-
+    User --> NotificationService
     UserRepository <|.. InMemoryUserRepository
-    NotificationChannel <|-- EmailChannel
-    NotificationChannel <|-- SMSChannel
-    NotificationChannel <|-- ConsoleChannel
+    NotificationChannel <|.. EmailChannel
+    NotificationChannel <|.. SMSChannel
+    NotificationChannel <|.. ConsoleChannel
     NotificationService --> UserRepository
     NotificationService --> NotificationChannel
-    EmailChannel --> NotificationChannel
-    SMSChannel --> NotificationChannel
-    ConsoleChannel --> NotificationChannel
     Logger --> NotificationService
 ```
