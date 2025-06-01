@@ -237,12 +237,13 @@ Ejecutar la Aplicación:
 ``` bash
 python app.py
 ```
-Documentación Swagger, para acceder a la documentación en Swagger acceder al siguiente link luego de ejecutar la aplicación
+### Documentación Swagger: 
+Para acceder a la documentación en Swagger acceder al siguiente link luego de ejecutar la aplicación
 ``` bash
 http://localhost:5000/apidocs
 ```
 
-🧪 Testing con curl o Postman
+### 🧪 Testing con curl o Postman
 ✅ Registrar usuario
 ``` bash
 curl -X POST http://localhost:5000/users \
