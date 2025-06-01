@@ -24,22 +24,32 @@ Registra un nuevo usuario
 Solicitud:
 ``` bash
 {
-  "name": "string",
-  "preferred_channel": "string",
-  "available_channels": ["string"]
+  "name": "Juan Pérez",
+  "preferred_channel": "email",
+  "available_channels": ["email", "sms"]
 }
 ```
-Respuesta:
+Respuestas:
+- 201 Created (usuario registrado correctamente)
 ``` bash
 {
   "message": "Usuario registrado",
   "user": {
-    "name": "string",
-    "preferred_channel": "string",
-    "available_channels": ["string"]
-    }
+    "name": "Juan Pérez",
+    "preferred_channel": "email",
+    "available_channels": ["email", "sms"]
+  }
 }
+
 ```
+- 400 Bad Request (datos incompletos o formato inválido)
+``` bash
+{
+  "error": "Datos incompletos"
+}
+
+```
+
 ### GET /users
 Lista todos los usuarios registrados
 
@@ -47,11 +57,17 @@ Respuesta:
 ```bash
 [
   {
-    "name": "string",
-    "preferred_channel": "string",
-    "available_channels": ["string"]
+    "name": "Juan Pérez",
+    "preferred_channel": "email",
+    "available_channels": ["email", "sms"]
+  },
+  {
+    "name": "María López",
+    "preferred_channel": "sms",
+    "available_channels": ["email", "sms", "push"]
   }
 ]
+
 ```
 ### POST /notifications/send
 Envía una notificación
@@ -59,22 +75,40 @@ Envía una notificación
 Solicitud:
 ``` bash
 {
-  "user_name": "string",
-  "message": "string"
+  "user_name": "Juan Pérez",
+  "message": "Tienes un nuevo mensaje"
 }
+
 ```
-Respuesta:
+Respuestas:
+- 200 OK (notificación enviada con éxito)
+
 ``` bash
 {
-  "result": {
-    "status": "success/error",
-    "channel": "string",
-    "message": "string"
-  },
-  "logs": ["string"],
-  "request_id": "string"
+  "result": "Notificación enviada por email",
+  "logs": [
+    "[INFO] Enviando notificación a Juan Pérez vía email...",
+    "[INFO] Notificación enviada con éxito",
+    // ... hasta 10 entradas de log
+  ]
 }
 ```
+- 400 Bad Request (datos incompletos o formato inválido)
+``` bash
+{
+  "error": "Datos incompletos"
+}
+
+```
+
+- 404 Not Found (usuario no encontrado)
+``` bash
+{
+  "error": "Usuario no encontrado"
+}
+
+```
+
 ## Diagrama de clases
 ```mermaid
 classDiagram
@@ -203,3 +237,45 @@ Ejecutar la Aplicación:
 ``` bash
 python app.py
 ```
+Documentación Swagger, para acceder a la documentación en Swagger acceder al siguiente link luego de ejecutar la aplicación
+``` bash
+http://localhost:5000/apidocs
+```
+
+🧪 Testing con curl o Postman
+✅ Registrar usuario
+``` bash
+curl -X POST http://localhost:5000/users \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "Juan Pérez",
+  "preferred_channel": "email",
+  "available_channels": ["email", "sms"]
+}'
+```
+
+📋 Listar usuarios
+``` bash
+curl http://localhost:5000/users
+```
+✉️ Enviar notificación
+``` bash
+curl -X POST http://localhost:5000/notifications/send \
+-H "Content-Type: application/json" \
+-d '{
+  "user_name": "Juan Pérez",
+  "message": "Tienes una nueva notificación"
+}'
+
+```
+🧪 En Postman
+1. Abrí Postman y seleccioná POST o GET según el endpoint.
+2. Usá http://localhost:5000/users o http://localhost:5000/notifications/send como URL.
+3. En la pestaña "Body", seleccioná raw y JSON.
+4. Pegá el contenido correspondiente al cuerpo del request.
+5. Presioná Send para ejecutar la llamada.
+
+
+
+
+
