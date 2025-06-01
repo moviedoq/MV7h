@@ -1,0 +1,16 @@
+[2025-06-01 16:10:49] Trying to send EMAIL to Juan: Your appointment is tomorrow.
+[2025-06-01 16:10:49] EMAIL notification to Juan succeeded
+[2025-06-01 16:10:49] Trying to send SMS to Juan: Your appointment is tomorrow.
+[2025-06-01 16:10:49] SMS notification to Juan failed
+[2025-06-01 16:11:05] Trying to send EMAIL to Juan: Your appointment is tomorrow.
+[2025-06-01 16:11:05] EMAIL notification to Juan succeeded
+[2025-06-01 16:11:05] Trying to send SMS to Juan: Your appointment is tomorrow.
+[2025-06-01 16:11:05] SMS notification to Juan succeeded
+[2025-06-01 16:19:25] Trying to send EMAIL to Pedro: Your appointment is tomorrow.
+[2025-06-01 16:19:25] EMAIL notification to Pedro failed
+[2025-06-01 16:19:25] Trying to send SMS to Pedro: Your appointment is tomorrow.
+[2025-06-01 16:19:25] SMS notification to Pedro failed
+[2025-06-01 16:20:05] Trying to send EMAIL to Pedro: Your appointment is tomorrow.
+[2025-06-01 16:20:05] EMAIL notification to Pedro failed
+[2025-06-01 16:20:05] Trying to send SMS to Pedro: Your appointment is tomorrow.
+[2025-06-01 16:20:05] SMS notification to Pedro succeeded
