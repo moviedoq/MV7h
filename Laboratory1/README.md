@@ -1,93 +1,82 @@
 # 🧪 Advanced Individual Lab: Multichannel Notification System (REST API)
 
-## 📝 Context
-
-In today's software architecture, building modular and scalable systems is essential. Design patterns play a key role in helping developers write cleaner, more maintainable, and extensible code.
-
-In this individual lab, you will implement a REST API for a notification system where users can register with multiple communication channels (e.g., email, SMS, console). When sending a notification, the system should first attempt to deliver it through the user's preferred channel. If delivery fails (simulated randomly), the system should attempt backup channels using a chain of responsibility.
-
-The lab requires the use of at least two design patterns (chain of responsibility and one additional pattern of your choice). You will simulate notification logic, model system behavior, and structure the solution into clean, reusable components.
+**Autor:** Jacel Thomás Enciso Pinzón
 
 ---
 
-## 🎯 Objective
+## 🧠 Descripción del Sistema
 
-Develop a modular REST API to manage users and send notifications using **at least two advanced design patterns**, in addition to detailed design patterns.
-
----
-
-## 🔁 Notification Logic
-
-You will simulate delivery attempts via a **Chain of Responsibility**. For example:
-
-1. A user has preferred channel = `email`, available = `[email, sms]`
-2. Email channel is attempted (random failure simulated)
-3. If it fails, the next channel (sms) is attempted
-
-Use `random.choice([True, False])` to simulate failures.
+Este sistema REST permite registrar usuarios con múltiples canales de comunicación (`email`, `SMS`, `llamada`, `consola`). Cuando se envía una notificación, el sistema intenta primero con el canal **preferido** del usuario. Si ese canal falla (simulado aleatoriamente), recurre a los canales alternativos usando una **cadena de responsabilidad**. Todos los intentos de envío se registran usando un **logger Singleton**.
 
 ---
 
-## 🔧 REST API Endpoints
+## 🧩 Patrones de Diseño Usados
 
-| Method | Endpoint              | Description                                      |
-|--------|-----------------------|--------------------------------------------------|
-| POST   | `/users`              | Register a user with name, preferred and available channels |
-| GET    | `/users`              | List all users                                   |
-| POST   | `/notifications/send` | Send a notification with message and priority    |
+### 🔗 Chain of Responsibility
 
-### Example Payloads
+Cada canal de comunicación (Email, SMS, Llamada, Consola) actúa como un **handler** en una cadena. Si un canal falla, el mensaje se pasa al siguiente.
 
-**POST /users**
-```json
-{
-  "name": "Juan",
-  "preferred_channel": "email",
-  "available_channels": ["email", "sms"]
-}
+### 🧱 Singleton
+
+El logger implementa el patrón Singleton para asegurar que todas las notificaciones sean registradas por una sola instancia global.
+
+---
+
+## 📦 Estructura del Proyecto
+
+```text
+├── app.py
+├── controllers/
+│   ├── __init__.py
+│   ├── user_controller.py
+│   └── notification_controller.py
+├── services/
+│   ├── __init__.py
+│   ├── user_service.py
+│   └── notification_service.py
+├── notifications/
+│   ├── __init__.py
+│   ├── channels.py
+│   ├── chain.py
+│   └── logger.py
+├── models/
+│   ├── __init__.py
+│   └── user.py
+│
+└── README.md
 ```
 
-**POST /notifications/send**
-```json
-{
-  "user_name": "Juan",
-  "message": "Your appointment is tomorrow.",
-  "priority": "high"
-}
-```
+---
 
+## 🛠️ Instalación y Ejecución
+
+1. Clona el repositorio:
+
+    ```bash
+    git clone https://github.com/SwEng2-2025i/MV7h.git
+    cd Laboratory1
+    cd 1000809070
+    ```
+
+2. Instala las dependencias y ejecuta el servidor:
+
+    ```bash
+    pip install -r requirements.txt
+    python app.py
+    ```
+
+3. Abre tu navegador en:
+
+    [http://127.0.0.1:5000/apidocs](http://127.0.0.1:5000/apidocs)
+
+   Para probar la API con Swagger UI.
 
 ---
 
-## ✅ Requirements
+## 📡 Endpoints de la API
 
-- Use Flask for REST API
-- Apply at least two design patterns
-- Simulate channel failures and retry using fallback
-- Logger must record every notification attempt (optional Singleton)
-- No database required (in-memory data structures allowed)
-- Code must be modular, clean, and well-documented
-
----
-
-## 📄 Deliverable
-
-- Complete source code in organized structure
-- A `README.md` that includes:
-  - README.md with the full name.
-  - System explanation and endpoint documentation
-  - Class/module diagram
-  - Design pattern justifications
-  - Setup and testing instructions (e.g., curl/Postman examples)
-- Documentation using Swagger should be included
-- Well-commented code
-
----
-
-
-
-## Submission Format- 
-It must be delivered **via a pull request to the main branch of the repository**, which must be merged before the delivery date. In the folder laboratories/laboratory_1, create an X folder (where X = your identity document number), which must include the deliverable.
-
-
-## ⏱️ Delivery date -> MAY 30, 2025 -> 23:59 GTM-5
+| Método | Endpoint              | Descripción                            | Ejemplo JSON / Curl                                                                                                                                                                                                                                |
+|--------|-----------------------|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| POST   | `/users`              | Registra un usuario nuevo.             | **JSON:**<br>```json<br>{<br>  "name": "Thomas",<br>  "preferred_channel": "email",<br>  "available_channels": ["email", "sms", "call"]<br>}```<br>**Curl:**<br>```bash<br>curl -X POST http://127.0.0.1:5000/users \ <br>  -H "Content-Type: application/json" \ <br>  -d "{\"name\":\"Thomas\",\"preferred_channel\":\"email\",\"available_channels\":[\"email\",\"sms\",\"call\"]}"<br>``` |
+| GET    | `/users`              | Lista todos los usuarios registrados.  | **Curl:**<br>```bash<br>curl http://127.0.0.1:5000/users<br>```                                                                                                                                                                                   |
+| POST   | `/notifications/send` | Envía una notificación a un usuario.   | **JSON:**<br>```json<br>{<br>  "user_name": "Juan",<br>  "message": "Tu cita es mañana.",<br>  "priority": "high"<br>}```<br>**Curl:**<br>```bash<br>curl -X POST http://127.0.0.1:5000/notifications/send \ <br>  -H "Content-Type: application/json" \ <br>  -d "{\"user_name\":\"Juan\",\"message\":\"Tu cita es mañana.\",\"priority\":\"high\"}"<br>``` |
