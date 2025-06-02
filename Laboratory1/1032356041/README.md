@@ -15,7 +15,7 @@ El sistema está desarrollado en Flask, es modular y utiliza patrones de diseño
 #### `POST /users`
 ```json
 {
-  "name": "Juan",
+  "name": "David",
   "preferred_channel": "email",
   "available_channels": ["email", "sms", "console"]
 }
@@ -23,7 +23,7 @@ El sistema está desarrollado en Flask, es modular y utiliza patrones de diseño
 #### `POST /notifications/send`
 ```json
 {
-  "user_name": "Juan",
+  "user_name": "David",
   "message": "Tu cita es mañana.",
   "priority": "alta"
 }
@@ -86,7 +86,7 @@ python app.py
 ```
 curl -X POST http://localhost:5000/users \
   -H "Content-Type: application/json" \
-  -d "{\"name\": \"Juan\", \"preferred_channel\": \"email\", \"available_channels\": [\"email\", \"sms\", \"console\"]}"
+  -d "{\"name\": \"David\", \"preferred_channel\": \"email\", \"available_channels\": [\"email\", \"sms\", \"console\"]}"
 ```
 
 ### Listar usuarios
@@ -100,7 +100,7 @@ curl http://localhost:5000/users
 ```
 curl -X POST http://localhost:5000/notifications/send \
   -H "Content-Type: application/json" \
-  -d "{\"user_name\": \"Juan\", \"message\": \"Tu cita es mañana.\", \"priority\": \"alta\"}"
+  -d "{\"user_name\": \"David\", \"message\": \"Tu cita es mañana.\", \"priority\": \"alta\"}"
 ```
 
 ### Consultar logs
