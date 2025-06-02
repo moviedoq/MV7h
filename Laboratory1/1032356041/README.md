@@ -8,14 +8,7 @@ Esta API REST permite registrar usuarios y enviarles notificaciones mediante dis
 El sistema está desarrollado en Flask, es modular y utiliza patrones de diseño avanzados para mantener el código limpio, extensible y fácil de probar.
 
 
-##  Endpoints Disponibles
 
-| Método | Endpoint                    | Descripción                           |
-|--------|-----------------------------|---------------------------------------|
-| POST   | `/users`                    | Registra un nuevo usuario             |
-| GET    | `/users`                    | Lista todos los usuarios registrados  |
-| POST   | `/notifications/send`       | Envía una notificación a un usuario   |
-| GET    | `/logs`                     | Lista los logs del sistema            |
 
 ### Ejemplos de Carga Útil (Payload)
 
@@ -36,6 +29,15 @@ El sistema está desarrollado en Flask, es modular y utiliza patrones de diseño
 }
 ```
 
+##  Endpoints Disponibles
+
+| Método | Endpoint                    | Descripción                           |
+|--------|-----------------------------|---------------------------------------|
+| POST   | `/users`                    | Registra un nuevo usuario             |
+| GET    | `/users`                    | Lista todos los usuarios registrados  |
+| POST   | `/notifications/send`       | Envía una notificación a un usuario   |
+| GET    | `/logs`                     | Lista los logs del sistema            |
+
 ##  Patrones de Diseño Utilizados
 
 1. **Chain of Responsibility (Cadena de Responsabilidad)**  
@@ -43,7 +45,7 @@ El sistema está desarrollado en Flask, es modular y utiliza patrones de diseño
 2. **Singleton**  
    Utilizado para implementar un logger que registra cada intento de envío de notificación. Solo existe una instancia de este logger durante toda la ejecución del sistema.
 
-## 📂 Estructura del Proyecto
+## 📂 Estructura 
 
 ```
 1032356041/
@@ -55,9 +57,9 @@ El sistema está desarrollado en Flask, es modular y utiliza patrones de diseño
 └── README.md
 ```
 
-## 🖼️ Diagrama de Clases y Módulos
+## 🖼️ Diagrama 
 
-![Diagrama de Clases](assets/clases.png)
+![Diagrama de Clases]()
 
 ##⚙️ Instalación y ejecución
 
@@ -109,10 +111,9 @@ curl http://localhost:5000/logs
 
 ## 📘 Documentación Swagger
 
-Una vez iniciada la app, puedes acceder a la documentación Swagger en:
+Una vez iniciada la app, Se puede acceder a Sawgger mediante:
 
 ```
 http://localhost:5000/apidocs
 ```
 
-Ahí podrás probar los endpoints directamente desde una interfaz web interactiva.
