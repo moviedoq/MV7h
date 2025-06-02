@@ -62,6 +62,7 @@ El sistema está desarrollado en Flask, es modular y utiliza patrones de diseño
 ![image](https://github.com/user-attachments/assets/50e757b1-df3f-40bc-bebb-06b1e2ee1bf1)
 
 
+
 ##⚙️ Instalación y ejecución
 
 1. Clona el repositorio:
