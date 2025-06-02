@@ -1,0 +1,188 @@
+swagger: "2.0"
+info:
+  title: Multichannel Notification System API
+  description: REST API for sending notifications via multiple channels using Chain of Responsibility and Factory patterns.
+  version: "1.0.0"
+host: "localhost:5000"
+basePath: "/"
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /users:
+    post:
+      summary: "Register a new user"
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - name
+              - preferred_channel
+              - available_channels
+            properties:
+              name:
+                type: string
+                example: Juan
+              preferred_channel:
+                type: string
+                enum: [email, sms, console]
+                example: email
+              available_channels:
+                type: array
+                items:
+                  type: string
+                  enum: [email, sms, console]
+                example: [email, sms, console]
+          example:
+            name: Juan
+            preferred_channel: email
+            available_channels: [email, sms, console]
+      responses:
+        201:
+          description: "User created"
+        400:
+          description: "Invalid input"
+        409:
+          description: "User already exists"
+      x-curl-examples:
+        valid:
+          description: Register a user (valid)
+          command: |
+            curl -X POST http://localhost:5000/users -H "Content-Type: application/json" -d "{\"name\": \"Juan\", \"preferred_channel\": \"email\", \"available_channels\": [\"email\", \"sms\", \"console\"]}"
+        duplicate:
+          description: Register a user (duplicate, should return 409)
+          command: |
+            curl -X POST http://localhost:5000/users -H "Content-Type: application/json" -d "{\"name\": \"Juan\", \"preferred_channel\": \"email\", \"available_channels\": [\"email\", \"sms\"]}"
+        invalid_channel:
+          description: Register a user (invalid channel, should return 400)
+          command: |
+            curl -X POST http://localhost:5000/users -H "Content-Type: application/json" -d "{\"name\": \"Maria\", \"preferred_channel\": \"whatsapp\", \"available_channels\": [\"email\", \"sms\"]}"
+        preferred_not_in_available:
+          description: Register a user (preferred channel not in available, should return 400)
+          command: |
+            curl -X POST http://localhost:5000/users -H "Content-Type: application/json" -d "{\"name\": \"Pedro\", \"preferred_channel\": \"sms\", \"available_channels\": [\"email\"]}"
+    get:
+      summary: "List all users"
+      responses:
+        200:
+          description: "A list of users"
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Juan
+                preferred_channel:
+                  type: string
+                  example: email
+                available_channels:
+                  type: array
+                  items:
+                    type: string
+                  example: [email, sms, console]
+      x-curl-example:
+        command: |
+          curl -X GET http://localhost:5000/users
+
+  /notifications/send:
+    post:
+      summary: "Send a notification"
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - user_name
+              - message
+              - priority
+            properties:
+              user_name:
+                type: string
+                example: Juan
+              message:
+                type: string
+                example: Your appointment is tomorrow.
+              priority:
+                type: string
+                example: high
+          example:
+            user_name: Juan
+            message: Your appointment is tomorrow.
+            priority: high
+      responses:
+        200:
+          description: "Notification sent"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Notification sent successfully.
+        400:
+          description: "Invalid input"
+        404:
+          description: "User not found"
+        500:
+          description: "Failed to send notification"
+      x-curl-examples:
+        valid:
+          description: Send a notification (valid)
+          command: |
+            curl -X POST http://localhost:5000/notifications/send -H "Content-Type: application/json" -d "{\"user_name\": \"Juan\", \"message\": \"Your appointment is tomorrow.\", \"priority\": \"high\"}"
+        user_not_found:
+          description: Send a notification (user not found, should return 404)
+          command: |
+            curl -X POST http://localhost:5000/notifications/send -H "Content-Type: application/json" -d "{\"user_name\": \"Carlos\", \"message\": \"Test message.\", \"priority\": \"low\"}"
+
+  /notifications:
+    get:
+      summary: "List all notifications"
+      responses:
+        200:
+          description: "A list of notifications"
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                user_name:
+                  type: string
+                  example: Juan
+                message:
+                  type: string
+                  example: Your appointment is tomorrow.
+                priority:
+                  type: string
+                  example: high
+      x-curl-example:
+        command: |
+          curl -X GET http://localhost:5000/notifications
+
+  /logs:
+    get:
+      summary: "Get logs"
+      description: "Retrieves all notification attempt logs."
+      responses:
+        200:
+          description: "A list of log messages"
+          schema:
+            type: object
+            properties:
+              logs:
+                type: array
+                items:
+                  type: string
+      x-curl-example:
+        command: |
+          curl -X GET http://localhost:5000/logs
