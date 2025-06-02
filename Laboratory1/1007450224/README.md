@@ -78,7 +78,7 @@ curl -X POST http://127.0.0.1:5000/notifications/send -H "Content-Type: applicat
 - `LoggerSingleton`: clase logger compartida por toda la aplicación.
 - `build_chain`: función que arma dinámicamente la cadena de canales según prioridad.
 
-Puedes generar un diagrama visual con [https://app.diagrams.net](https://app.diagrams.net) usando estos elementos.
+
 
 ---
 
