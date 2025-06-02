@@ -16,18 +16,16 @@ Además de su funcionalidad principal, el proyecto está estructurado siguiendo 
 
 ```
 1233506795/
-├── models/
-│   └── notificacion.py
-│
+
+├── db/
+│   └── db.py
 ├── handler/
 │   ├── handler.py
 │   ├── main.py
 │   └──request.py
-│
-├── db/
-│   ├── db.py
+├── models/
+│   └── notificacion.py
 └── app.py      
-
 ```
 
 ---
