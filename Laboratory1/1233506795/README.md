@@ -41,7 +41,7 @@ Además de su funcionalidad principal, el proyecto está estructurado siguiendo 
 | POST   | `/notifications/send` | Envia una notificacion                           |
 
 
-### Example Payloads
+### Ejemplos
 
 #### POST /users
 
