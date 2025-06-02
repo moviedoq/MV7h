@@ -59,8 +59,8 @@ El sistema está desarrollado en Flask, es modular y utiliza patrones de diseño
 
 ## 🖼️ Diagrama 
 
-![Diagrama de Clases](![image](https://github.com/user-attachments/assets/8f874247-9f13-4762-810c-a5b4dd8cf764)
-)
+![image](https://github.com/user-attachments/assets/50e757b1-df3f-40bc-bebb-06b1e2ee1bf1)
+
 
 ##⚙️ Instalación y ejecución
 
