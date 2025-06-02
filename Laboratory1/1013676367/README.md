@@ -185,4 +185,8 @@ curl -X GET "http://localhost:5000/logs" -H "accept: application/json"
 
 ## Diagrama de clases
 
-![alt text](<assets/esquema de archivos.png>)
+![Diagram class](<assets/Diagrama de clases.png>)
+
+## Diagrama de flujo
+
+![alt text](<assets/Diagrama de flujo.png>)
