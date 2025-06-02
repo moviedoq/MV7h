@@ -1,0 +1,83 @@
+{
+  "info": {
+    "name": "Sistema de Notificaci\u00f3n Multicanal",
+    "_postman_id": "7c0d1a24-d1b0-4e7d-b23f-e24f0b0c7f4f",
+    "description": "Colecci\u00f3n de pruebas para la API REST de notificaci\u00f3n multicanal",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Crear usuario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Juan\",\n  \"preferred_channel\": \"email\",\n  \"available_channels\": [\n    \"email\",\n    \"sms\",\n    \"console\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/users",
+          "protocol": "http",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "5000",
+          "path": [
+            "users"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ver usuarios",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/users",
+          "protocol": "http",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "5000",
+          "path": [
+            "users"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Enviar notificaci\u00f3n",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_name\": \"Juan\",\n  \"message\": \"Tu cita m\\u00e9dica es ma\\u00f1ana a las 8 a.m.\",\n  \"priority\": \"alta\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/notifications/send",
+          "protocol": "http",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "5000",
+          "path": [
+            "notifications",
+            "send"
+          ]
+        }
+      }
+    }
+  ]
+}
