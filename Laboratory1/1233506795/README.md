@@ -120,13 +120,13 @@ classDiagram
 
 ## Instalación
 
-### 1.Clona el repositoro:
+### 1. Clona el repositoro:
 
   ```bash
   git clone git@github.com:SwEng2-2025i/MV7h.git
   ```
 
-### 2.Navega al directorio del proyecto:
+### 2. Navega al directorio del proyecto:
 
   ```bash
   cd Laboratory1
