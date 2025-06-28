@@ -44,6 +44,13 @@ flask run
 
 ```
 
+### Iniciar servicios de FrontEnd
+```bash
+cd Front-End
+flask run
+
+```
+
 ---
 ## Estructura del proyecto
 
