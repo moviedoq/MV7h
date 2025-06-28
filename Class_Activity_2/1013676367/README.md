@@ -161,7 +161,59 @@ def create_pdf(results):
     pdf.output(pdf_filename)
     print("PDF generado como 'resultados_BackEnd_Test.pdf'") #FrontEnd_reports
 ```
+## Cambios realizados en los test
+### integration_test - BackEnd
+```python
+def integration_test():
+    results = []
 
+    # Step 1: Create user
+    user_id = create_user("Camilo", results)
+
+    # Step 2: Create task for that user
+    task_id = create_task(user_id, "Prepare presentation", results)
+
+    # Step 3: Verify that the task is registered and associated with the user
+    tasks = get_tasks()
+    user_tasks = [t for t in tasks if t["user_id"] == user_id]
+    try:
+        assert any(t["id"] == task_id for t in user_tasks), "❌ The task was not correctly registered"
+        print("✅ Test completed: task was successfully registered and linked to the user.")
+        results.append("Test completed: task was successfully registered and linked to the user.")
+    except Exception as e:
+        results.append(f"❌ Assertion failed: {e}")
+
+    create_pdf(results)
+
+    requests.get(f'http://127.0.0.1:5001/users/delete/{user_id}')
+    requests.get(f'http://127.0.0.1:5002/tasks/delete/{task_id}')
+```
+
+### nuevo main - FrontEnd
+```python
+def main():
+    # Main test runner that initializes the browser and runs the full E2E flow
+    options = Options()
+    # options.add_argument('--headless')  # Uncomment for headless mode
+    driver = webdriver.Chrome(options=options)
+
+    results = []
+    try:
+        wait = WebDriverWait(driver, 10)
+        abrir_frontend(driver, results)
+        user_id = crear_usuario(driver, wait, results)
+        task_id = crear_tarea(driver, wait, user_id, results)
+        ver_tareas(driver, results)
+        time.sleep(3)  # Final delay to observe results if not running headless
+        create_pdf(results)
+        requests.get(f'http://127.0.0.1:5001/users/delete/{user_id}')
+        requests.get(f'http://127.0.0.1:5002/tasks/delete/{task_id}')
+        time.sleep(3)
+
+    finally:
+        driver.quit()  # Always close the browser at the end
+```
+---
 #### Estructura de reportes:
 
 ```bash
