@@ -78,7 +78,7 @@ def integration_test():
         assert any(t["id"] == task_id for t in user_tasks), "❌ The task was not correctly registered"
         print("✅ Test completed: task was successfully registered and linked to the user.")
         results.append("Test completed: task was successfully registered and linked to the user.")
-    except:
+    except Exception as e:
         results.append(f"❌ Assertion failed: {e}")
 
     create_pdf(results)

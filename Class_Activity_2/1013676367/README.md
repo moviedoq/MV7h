@@ -82,12 +82,41 @@ Se implementaron endpoints específicos en los microservicios para garantizar la
 ```bash
 GET /users/delete/<user_id>
 ```
+
+
+```python
+@service_a.route('/users/delete/<int:user_id>', methods=['GET'])
+def delete_user(user_id):
+    try:
+        rows_deleted = User.query.filter_by(id=user_id).delete()
+        if rows_deleted == 0:
+            raise ValueError(f"No se encontró el usuario con ID: {user_id}")
+        db.session.commit()
+        return jsonify({'delete user': f'{user_id}'})
+    except Exception as e:
+        return jsonify({'error': f'Error de conexión al usuarios: {str(e)}'}), 500
+
+```
 * Elimina un usuario específico por ID
 * Retorna código 200 si la operación fue exitosa
 
 #### Task_Service:
 ```bash
 GET /tasks/delete/<task_id>
+```
+
+```python
+@service_b.route('/tasks/delete/<int:task_id>', methods=['GET'])
+def delete_tasks(task_id):
+    try:
+        rows_deleted = Task.query.filter_by(id=task_id).delete()
+        if rows_deleted == 0:
+            raise ValueError(f"No se encontró la tarea con ID: {task_id}")
+        db.session.commit()
+        return jsonify({'delete task': f'{task_id}'})
+    except Exception as e:
+        return jsonify({'error': f'Error de conexión a tarea: {str(e)}'}), 500
+
 ```
 * Elimina una tarea específica por ID
 * Retorna código 204 (No Content) al completarse
@@ -103,6 +132,35 @@ GET /tasks/delete/<task_id>
 * Librería FPDF para generación programática de documentos
 * Numeración secuencial automática (Report_1.pdf, Report_2.pdf, ...)
 * en Test/BackEnd_reports and Test/ ordenados secuencialmente
+
+```python
+def create_pdf(results):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    pdf.cell(200, 10, "Resultados de Pruebas", ln=True, align="C")
+    pdf.ln(10)
+
+    for line in results:
+        pdf.multi_cell(0, 10, line.encode('ascii', 'ignore').decode())
+    path = os.getcwd()
+    dr='\\'
+    folder = 'Test'
+    new_folder = 'BackEnd_reports' #FrontEnd_reports
+    new_path = path + dr + folder + dr  + new_folder
+
+    if not os.path.exists(new_path):
+        os.makedirs(new_path)
+    dirs = os.listdir(new_path)
+    num = 0
+    for item in dirs:
+        if os.path.isfile(new_path + dr + item):
+            num+=1
+
+    pdf_filename = os.path.join(new_path, f"Report_{num}.pdf")
+    pdf.output(pdf_filename)
+    print("PDF generado como 'resultados_BackEnd_Test.pdf'") #FrontEnd_reports
+```
 
 #### Estructura de reportes:
 
