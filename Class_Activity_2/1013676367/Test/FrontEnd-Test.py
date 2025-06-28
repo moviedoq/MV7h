@@ -117,13 +117,9 @@ def main():
         ver_tareas(driver, results)
         time.sleep(3)  # Final delay to observe results if not running headless
         create_pdf(results)
-        print(user_id)
-        print(task_id)
         requests.get(f'http://127.0.0.1:5001/users/delete/{user_id}')
         requests.get(f'http://127.0.0.1:5002/tasks/delete/{task_id}')
         time.sleep(3)
-
-
 
     finally:
         driver.quit()  # Always close the browser at the end
